@@ -1,0 +1,713 @@
+{
+  "exportTimestamp": "2025-09-02T04:35:56.871Z",
+  "totalExported": 50,
+  "algorithm": "Hybrid (Trigram + Jaccard + Vector)",
+  "thresholds": {
+    "trigramThreshold": 0.3,
+    "jaccardThreshold": 0.2,
+    "vectorThreshold": 0.4,
+    "hybridThreshold": 0.5
+  },
+  "matches": [
+    {
+      "hybridScore": 0.8299673507462686,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Eric Adams",
+        "noSubTitle": "Eric Adams"
+      },
+      "polymarket": {
+        "question": "Will Eric Adams win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.8224967061923584,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Brad Lander",
+        "noSubTitle": "Brad Lander"
+      },
+      "polymarket": {
+        "question": "Will Brad Lander win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.8185463527433257,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Andrew Cuomo",
+        "noSubTitle": "Andrew Cuomo"
+      },
+      "polymarket": {
+        "question": "Will Andrew Cuomo win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.8166666666666667,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Will Novak Djokovic win a major in 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "In 2025",
+        "noSubTitle": "In 2025"
+      },
+      "polymarket": {
+        "question": "Will Novak Djokovic win a Major in 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.8148468976631749,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Zellnor Myrie",
+        "noSubTitle": "Zellnor Myrie"
+      },
+      "polymarket": {
+        "question": "Will Zellnor Myrie win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.8113768115942028,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Scott Stringer",
+        "noSubTitle": "Scott Stringer"
+      },
+      "polymarket": {
+        "question": "Will Scott Stringer win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.8100980392156862,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Zohran Mamdani",
+        "noSubTitle": "Zohran Mamdani"
+      },
+      "polymarket": {
+        "question": "Will Zohran Mamdani win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7923599320882853,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Jersey City mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Mussab Ali",
+        "noSubTitle": "Mussab Ali"
+      },
+      "polymarket": {
+        "question": "Will Mussab Ali win the 2025 Jersey City mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.791310975609756,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Jersey City mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Jim McGreevey",
+        "noSubTitle": "Jim McGreevey"
+      },
+      "polymarket": {
+        "question": "Will Jim McGreevey win the 2025 Jersey City mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7902631578947369,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Jersey City mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Bill O’Dea",
+        "noSubTitle": "Bill O’Dea"
+      },
+      "polymarket": {
+        "question": "Will Bill O’Dea win the 2025 Jersey City mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7890625,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Jersey City mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Flash Gordon",
+        "noSubTitle": "Flash Gordon"
+      },
+      "polymarket": {
+        "question": "Will Flash Gordon win the 2025 Jersey City mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7878144775428307,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Guyana Presidential Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Irfaan Ali",
+        "noSubTitle": "Irfaan Ali"
+      },
+      "polymarket": {
+        "question": "Will Irfaan Ali win the 2025 Guyana presidential election?"
+      }
+    },
+    {
+      "hybridScore": 0.7875609756097561,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Jersey City mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "James Solomon",
+        "noSubTitle": "James Solomon"
+      },
+      "polymarket": {
+        "question": "Will James Solomon win the 2025 Jersey City mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.784814300590073,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Jersey City mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Joyce Watterman",
+        "noSubTitle": "Joyce Watterman"
+      },
+      "polymarket": {
+        "question": "Will Joyce Watterman win the 2025 Jersey City mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7845170454545455,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Guyana Presidential Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Nigel Hughes",
+        "noSubTitle": "Nigel Hughes"
+      },
+      "polymarket": {
+        "question": "Will Nigel Hughes win the 2025 Guyana presidential election?"
+      }
+    },
+    {
+      "hybridScore": 0.7830155210643015,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win the Guyana Presidential Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Aubrey Norton",
+        "noSubTitle": "Aubrey Norton"
+      },
+      "polymarket": {
+        "question": "Will Aubrey Norton win the 2025 Guyana presidential election?"
+      }
+    },
+    {
+      "hybridScore": 0.7801656920077973,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Will Elon Musk Rejoin the Trump Administration this year?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Politics",
+        "yesSubTitle": "In 2026",
+        "noSubTitle": "In 2026"
+      },
+      "polymarket": {
+        "question": "Will Elon Musk rejoin the Trump Administration this year?"
+      }
+    },
+    {
+      "hybridScore": 0.7757783387426374,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "The Jet",
+        "noSubTitle": "The Jet"
+      },
+      "polymarket": {
+        "question": "Will The Jet win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7689305230288837,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "The Duke",
+        "noSubTitle": "The Duke"
+      },
+      "polymarket": {
+        "question": "Will The Duke win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7622195455566216,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Pittsburgh Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Tony Moreno",
+        "noSubTitle": "Tony Moreno"
+      },
+      "polymarket": {
+        "question": "Will Tony Moreno win the 2025 Pittsburgh mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7581459758879114,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Minneapolis Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Omar Fateh",
+        "noSubTitle": "Omar Fateh"
+      },
+      "polymarket": {
+        "question": "Will Omar Fateh win the 2025 Minneapolis mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7581459758879114,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Minneapolis Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Jacob Frey",
+        "noSubTitle": "Jacob Frey"
+      },
+      "polymarket": {
+        "question": "Will Jacob Frey win the 2025 Minneapolis mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7560023310023309,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Minneapolis Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "DeWayne Davis",
+        "noSubTitle": "DeWayne Davis"
+      },
+      "polymarket": {
+        "question": "Will DeWayne Davis win the 2025 Minneapolis mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7542837918660288,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Minneapolis Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Jazz Hampton",
+        "noSubTitle": "Jazz Hampton"
+      },
+      "polymarket": {
+        "question": "Will Jazz Hampton win the 2025 Minneapolis mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7542837918660288,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Minneapolis Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Brenda Short",
+        "noSubTitle": "Brenda Short"
+      },
+      "polymarket": {
+        "question": "Will Brenda Short win the 2025 Minneapolis mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7498484848484848,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Cleveland Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Justin Bibb",
+        "noSubTitle": "Justin Bibb"
+      },
+      "polymarket": {
+        "question": "Will Justin Bibb win the 2025 Cleveland mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7494372671792027,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Cleveland Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Laverne Gore",
+        "noSubTitle": "Laverne Gore"
+      },
+      "polymarket": {
+        "question": "Will LaVerne Gore win the 2025 Cleveland mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7494041170097507,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Curtis Sliwa",
+        "noSubTitle": "Curtis Sliwa"
+      },
+      "polymarket": {
+        "question": "Will Curtis Silwa win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7485810392139507,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Pittsburgh Mayoral Election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Corey O'Connor",
+        "noSubTitle": "Corey O'Connor"
+      },
+      "polymarket": {
+        "question": "Will Corey O'Connor win the 2025 Pittsburgh mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7429022988505747,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will release an album in 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Entertainment",
+        "yesSubTitle": "Rihanna",
+        "noSubTitle": "Rihanna"
+      },
+      "polymarket": {
+        "question": "Will Rihanna release an album in 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.74,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will release an album in 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Entertainment",
+        "yesSubTitle": "Frank Ocean",
+        "noSubTitle": "Frank Ocean"
+      },
+      "polymarket": {
+        "question": "Will Frank Ocean release an album in 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.7397245762711865,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "New Orleans Mayoral Election",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Oliver Thomas",
+        "noSubTitle": "Oliver Thomas"
+      },
+      "polymarket": {
+        "question": "Will Oliver Thomas win the 2025 New Orleans mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7395449620801733,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Andrew Cuomo",
+        "noSubTitle": "Andrew Cuomo"
+      },
+      "polymarket": {
+        "question": "Will Andrew Yang win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7392622779519331,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Gabby Golf Girl",
+        "noSubTitle": "Gabby Golf Girl"
+      },
+      "polymarket": {
+        "question": "Will Gabby Golf Girl win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7383058608058608,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Second place in NYC Mayoral election?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Eric Adams",
+        "noSubTitle": "Eric Adams"
+      },
+      "polymarket": {
+        "question": "Will Adrienne Adams win second place in the 2025 NYC mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7366079132256871,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Will gold outperform Bitcoin in 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Financials",
+        "yesSubTitle": "In 2025",
+        "noSubTitle": "In 2025"
+      },
+      "polymarket": {
+        "question": "Will Bitcoin outperform Gold in 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.7365874009178139,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "PFT",
+        "noSubTitle": "PFT"
+      },
+      "polymarket": {
+        "question": "Will PFT win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7365874009178139,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Biz",
+        "noSubTitle": "Biz"
+      },
+      "polymarket": {
+        "question": "Will Biz win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7354281949934124,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Wesley Bryan",
+        "noSubTitle": "Wesley Bryan"
+      },
+      "polymarket": {
+        "question": "Will Wesley Bryan win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7348863636363636,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will release an album in 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Entertainment",
+        "yesSubTitle": "Kanye West",
+        "noSubTitle": "Kanye West"
+      },
+      "polymarket": {
+        "question": "Will Kanye West release an album in 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.7348863636363636,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will release an album in 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Entertainment",
+        "yesSubTitle": "A$AP Rocky",
+        "noSubTitle": "A$AP Rocky"
+      },
+      "polymarket": {
+        "question": "Will A$AP Rocky release an album in 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.7346398305084746,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "New Orleans Mayoral Election",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Elections",
+        "yesSubTitle": "Helena Moreno",
+        "noSubTitle": "Helena Moreno"
+      },
+      "polymarket": {
+        "question": "Will Helena Moreno win the 2025 New Orleans mayoral election?"
+      }
+    },
+    {
+      "hybridScore": 0.7333726415094339,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Beef",
+        "noSubTitle": "Beef"
+      },
+      "polymarket": {
+        "question": "Will Beef win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7333726415094339,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Chaz",
+        "noSubTitle": "Chaz"
+      },
+      "polymarket": {
+        "question": "Will Chaz win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.733234552332913,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Dod King",
+        "noSubTitle": "Dod King"
+      },
+      "polymarket": {
+        "question": "Will Dod King win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.733234552332913,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "JR Smith",
+        "noSubTitle": "JR Smith"
+      },
+      "polymarket": {
+        "question": "Will JR Smith win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7328374455732947,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "TIME's Person of the Year for 2025?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Entertainment",
+        "yesSubTitle": "AI",
+        "noSubTitle": "AI"
+      },
+      "polymarket": {
+        "question": "Will Elon Musk be TIME's Person of the Year for 2025?"
+      }
+    },
+    {
+      "hybridScore": 0.7324224945926461,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Andrew Santino",
+        "noSubTitle": "Andrew Santino"
+      },
+      "polymarket": {
+        "question": "Will Andrew Santino win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7316206467127582,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Joey Cold Cuts",
+        "noSubTitle": "Joey Cold Cuts"
+      },
+      "polymarket": {
+        "question": "Will Joey Cold Cuts win the 2025 Internet Invitational?"
+      }
+    },
+    {
+      "hybridScore": 0.7312339023659777,
+      "confidence": "high",
+      "kalshi": {
+        "eventTitle": "Who will win Internet Invitational?",
+        "eventSubTitle": "In 2025",
+        "eventCategory": "Sports",
+        "yesSubTitle": "Luke Kwon",
+        "noSubTitle": "Luke Kwon"
+      },
+      "polymarket": {
+        "question": "Will Luke Kwon win the 2025 Internet Invitational?"
+      }
+    }
+  ]
+}

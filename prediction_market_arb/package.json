@@ -1,0 +1,49 @@
+{
+  "name": "prediction_market_arb",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev": "tsc --watch & nodemon dist/src/index.js",
+    "test:kalshi": "tsc && node dist/tests/test-kalshi-events.js",
+    "test:polymarket": "tsc && node dist/tests/test-polymarket-events.js",
+    "test:matching": "tsc && node dist/tests/test-matching-algo.js",
+    "test:new-markets": "tsc && node dist/tests/test-new-markets.js",
+    "test:kalshi-insert": "tsc && node dist/tests/test-kalshi-insert.js",
+    "test:polymarket-insert": "tsc && node dist/tests/test-polymarket-insert.js",
+    "test:ai": "tsc && node dist/tests/ai/test-ai-checker.js",
+    "test:close-conditions": "tsc && node dist/tests/test-close-condition-matching.js",
+    "insert-all-matches": "tsc && node dist/src/index.js --all",
+    "insert-new-matches": "tsc && node dist/src/index.js"
+  },
+  "keywords": [
+    "prediction-market",
+    "arbitrage",
+    "api",
+    "nodejs",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "A Node.js API for prediction market arbitrage opportunities",
+  "dependencies": {
+    "@types/pg": "^8.15.5",
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "openai": "^4.104.0",
+    "pg": "^8.16.3",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@types/ws": "^8.18.1",
+    "nodemon": "^3.0.1",
+    "typescript": "^5.9.2"
+  }
+}
