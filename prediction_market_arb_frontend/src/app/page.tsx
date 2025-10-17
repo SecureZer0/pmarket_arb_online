@@ -4,18 +4,17 @@ import { useState, useEffect, useRef } from 'react';
 import { MarketMatch } from '../types/market';
 import MarketMain from '../components/MarketMatcher/MarketMain';
 import FloatingBottomBar from '../components/FloatingBottomBar';
-import { initPolymarketWebSocket, closePolymarketWebSocket } from '../websockets/polymarket';
-import { initKalshiWebSocket, closeKalshiWebSocket } from '../websockets/kalshi';
-import { OrderBookProvider } from '../contexts/OrderBookContext';
+// WebSocket imports removed - now using proxy server for all data
+import { OrderBookProvider, getOrderBookDispatch } from '../contexts/OrderBookContext';
 import { SettingsProvider, useSettings } from '../contexts/SettingsContext';
+import { fetchMatchesFull } from '../services/proxy';
 // ArbitrageProvider no longer needed - arbitrage data is now part of MarketMatch objects
 
 function HomePageContent() {
   const [matches, setMatches] = useState<MarketMatch[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [websocketInitialized, setWebsocketInitialized] = useState(false);
-  const [kalshiWebsocketInitialized, setKalshiWebsocketInitialized] = useState(false);
+  // WebSocket state removed - now using proxy server for all data
   const { filterSettings } = useSettings();
   
   
@@ -127,13 +126,7 @@ function HomePageContent() {
   //   arbitrageDataRef.current = arbitrageData;
   // }, [arbitrageData]);
 
-  // Initialize WebSockets once when matches are first loaded
-  useEffect(() => {
-    if (matches.length > 0 && !websocketInitialized && !kalshiWebsocketInitialized) {
-      console.log('🔄 Initializing WebSockets on first load');
-      initializeWebSockets(matches);
-    }
-  }, [matches, websocketInitialized, kalshiWebsocketInitialized]);
+  // WebSocket initialization removed - now using proxy server for all data
 
   // Refetch data when filter settings change
   useEffect(() => {
@@ -144,119 +137,291 @@ function HomePageContent() {
     }
   }, [filterSettings]);
 
+  // Populate OrderBookContext when matches are loaded and context is ready
+  useEffect(() => {
+    if (matches.length > 0) {
+      console.log('🔄 Matches loaded, attempting to populate OrderBookContext...');
+      // Use setTimeout to ensure context is ready
+      setTimeout(() => {
+        populateOrderBookContext(matches);
+      }, 100);
+    }
+  }, [matches]);
+
+  // Function to populate OrderBookContext with data from proxy server
+  const populateOrderBookContext = (marketMatches: MarketMatch[]) => {
+    console.log('🔄 Starting populateOrderBookContext with', marketMatches.length, 'matches');
+    console.log('🔍 Sample match data:', marketMatches[0]);
+    const dispatch = getOrderBookDispatch();
+    if (!dispatch) {
+      console.warn('❌ OrderBook dispatch not available - context may not be ready yet');
+      return;
+    }
+    console.log('✅ OrderBook dispatch is available, proceeding with population');
+
+    let kalshiCount = 0;
+    let polymarketCount = 0;
+
+    marketMatches.forEach(match => {
+      // Handle Kalshi orderbook data
+      if (match.marketA?.orderbook && match.platform_a_name?.toLowerCase().includes('kalshi')) {
+        const kalshiTicker = match.market_a_external_id;
+        if (kalshiTicker) {
+          // Check if we have separate YES/NO orderbooks
+          if (match.marketA.yesOrderbook && match.marketA.noOrderbook) {
+            // Use separate orderbooks (new format)
+            const yesBids = (match.marketA.yesOrderbook.bids || []).map(([price, size]) => ({
+              price: price,
+              size: size,
+              side: 'bid' as const
+            }));
+            const yesAsks = (match.marketA.yesOrderbook.asks || []).map(([price, size]) => ({
+              price: price,
+              size: size,
+              side: 'ask' as const
+            }));
+            
+            const noBids = (match.marketA.noOrderbook.bids || []).map(([price, size]) => ({
+              price: price,
+              size: size,
+              side: 'bid' as const
+            }));
+            const noAsks = (match.marketA.noOrderbook.asks || []).map(([price, size]) => ({
+              price: price,
+              size: size,
+              side: 'ask' as const
+            }));
+            
+            // Dispatch Yes outcome orderbook
+            const yesClobId = `${kalshiTicker}_yes`;
+            console.log('🚀 Dispatching Kalshi Yes orderbook (separate):', {
+              clobId: yesClobId,
+              bidsCount: yesBids.length,
+              asksCount: yesAsks.length,
+              sampleAsks: yesAsks.slice(0, 3)
+            });
+            
+            dispatch({
+              type: 'SET_ORDER_BOOK',
+              marketId: '',
+              clobId: yesClobId,
+              bids: yesBids,
+              asks: yesAsks,
+              timestamp: match.marketA.yesOrderbook.lastUpdatedMs || Date.now()
+            });
+            
+            // Dispatch No outcome orderbook
+            const noClobId = `${kalshiTicker}_no`;
+            console.log('🚀 Dispatching Kalshi No orderbook (separate):', {
+              clobId: noClobId,
+              bidsCount: noBids.length,
+              asksCount: noAsks.length,
+              sampleAsks: noAsks.slice(0, 3)
+            });
+            
+            dispatch({
+              type: 'SET_ORDER_BOOK',
+              marketId: '',
+              clobId: noClobId,
+              bids: noBids,
+              asks: noAsks,
+              timestamp: match.marketA.noOrderbook.lastUpdatedMs || Date.now()
+            });
+          } else {
+            // Fallback to combined orderbook (old format)
+            const bids = (match.marketA.orderbook.bids || []).map(([price, size]) => ({
+              price: price,
+              size: size,
+              side: 'bid' as const
+            }));
+            const asks = (match.marketA.orderbook.asks || []).map(([price, size]) => ({
+              price: price,
+              size: size,
+              side: 'ask' as const
+            }));
+            
+            // Dispatch same data to both YES and NO (fallback)
+            const yesClobId = `${kalshiTicker}_yes`;
+            const noClobId = `${kalshiTicker}_no`;
+            
+            console.log('🚀 Dispatching Kalshi orderbooks (fallback - same data):', {
+              yesClobId,
+              noClobId,
+              bidsCount: bids.length,
+              asksCount: asks.length
+            });
+            
+            dispatch({
+              type: 'SET_ORDER_BOOK',
+              marketId: '',
+              clobId: yesClobId,
+              bids: bids,
+              asks: asks,
+              timestamp: match.marketA.orderbook.lastUpdatedMs || Date.now()
+            });
+            
+            dispatch({
+              type: 'SET_ORDER_BOOK',
+              marketId: '',
+              clobId: noClobId,
+              bids: bids,
+              asks: asks,
+              timestamp: match.marketA.orderbook.lastUpdatedMs || Date.now()
+            });
+          }
+          
+          kalshiCount++;
+        }
+      }
+
+      // Handle Polymarket orderbook data
+      if (match.marketB?.orderbook && match.platform_b_name?.toLowerCase().includes('polymarket')) {
+        const clobTokenIds = match.market_b_platform_data?.clobTokenIds;
+        if (clobTokenIds) {
+          try {
+            const tokenIds = typeof clobTokenIds === 'string' ? JSON.parse(clobTokenIds) : clobTokenIds;
+            if (Array.isArray(tokenIds) && tokenIds.length >= 2) {
+              // Check if we have separate YES/NO orderbooks
+              if (match.marketB.yesOrderbook && match.marketB.noOrderbook) {
+                // Use separate orderbooks (new format)
+                const yesBids = (match.marketB.yesOrderbook.bids || []).map(([price, size]) => ({
+                  price: price,
+                  size: size,
+                  side: 'bid' as const
+                }));
+                const yesAsks = (match.marketB.yesOrderbook.asks || []).map(([price, size]) => ({
+                  price: price,
+                  size: size,
+                  side: 'ask' as const
+                }));
+                
+                const noBids = (match.marketB.noOrderbook.bids || []).map(([price, size]) => ({
+                  price: price,
+                  size: size,
+                  side: 'bid' as const
+                }));
+                const noAsks = (match.marketB.noOrderbook.asks || []).map(([price, size]) => ({
+                  price: price,
+                  size: size,
+                  side: 'ask' as const
+                }));
+
+                // Dispatch Yes outcome (first token)
+                console.log('🚀 Dispatching Polymarket Yes orderbook (separate):', {
+                  clobId: tokenIds[0],
+                  bidsCount: yesBids.length,
+                  asksCount: yesAsks.length,
+                  sampleAsks: yesAsks.slice(0, 3)
+                });
+                
+                dispatch({
+                  type: 'SET_ORDER_BOOK',
+                  marketId: '',
+                  clobId: tokenIds[0],
+                  bids: yesBids,
+                  asks: yesAsks,
+                  timestamp: match.marketB.yesOrderbook.lastUpdatedMs || Date.now()
+                });
+
+                // Dispatch No outcome (second token)
+                console.log('🚀 Dispatching Polymarket No orderbook (separate):', {
+                  clobId: tokenIds[1],
+                  bidsCount: noBids.length,
+                  asksCount: noAsks.length,
+                  sampleAsks: noAsks.slice(0, 3)
+                });
+                
+                dispatch({
+                  type: 'SET_ORDER_BOOK',
+                  marketId: '',
+                  clobId: tokenIds[1],
+                  bids: noBids,
+                  asks: noAsks,
+                  timestamp: match.marketB.noOrderbook.lastUpdatedMs || Date.now()
+                });
+              } else {
+                // Fallback to combined orderbook (old format)
+                const bids = (match.marketB.orderbook.bids || []).map(([price, size]) => ({
+                  price: price,
+                  size: size,
+                  side: 'bid' as const
+                }));
+                const asks = (match.marketB.orderbook.asks || []).map(([price, size]) => ({
+                  price: price,
+                  size: size,
+                  side: 'ask' as const
+                }));
+
+                // Dispatch same data to both YES and NO (fallback)
+                console.log('🚀 Dispatching Polymarket orderbooks (fallback - same data):', {
+                  yesClobId: tokenIds[0],
+                  noClobId: tokenIds[1],
+                  bidsCount: bids.length,
+                  asksCount: asks.length
+                });
+
+                dispatch({
+                  type: 'SET_ORDER_BOOK',
+                  marketId: '',
+                  clobId: tokenIds[0],
+                  bids: bids,
+                  asks: asks,
+                  timestamp: match.marketB.orderbook.lastUpdatedMs || Date.now()
+                });
+              }
+              polymarketCount++;
+            }
+          } catch (error) {
+            console.warn('Failed to parse Polymarket clobTokenIds:', error);
+          }
+        }
+      }
+    });
+
+    console.log(`📊 Populated OrderBookContext: ${kalshiCount} Kalshi, ${polymarketCount} Polymarket orderbooks`);
+    
+    // Debug: Log some sample orderbook data
+    if (kalshiCount > 0) {
+      console.log('🔍 Sample Kalshi orderbook data:', {
+        sampleMatch: marketMatches.find(m => m.marketA?.orderbook && m.platform_a_name?.toLowerCase().includes('kalshi')),
+        totalKalshiMarkets: marketMatches.filter(m => m.platform_a_name?.toLowerCase().includes('kalshi')).length
+      });
+    }
+  };
+
   const fetchMatches = async (filterSettings?: any) => {
     try {
       setLoading(true);
-      const url = new URL('/api/market-matches', window.location.origin);
+      console.log('🚀 Starting fetchMatches...');
       
-      // Add filter parameters to URL if provided
-      if (filterSettings) {
-        if (filterSettings.hideAiRejectedMarkets) {
-          url.searchParams.append('hideAiRejectedMarkets', 'true');
-        }
-        if (filterSettings.hideAiRejectedCloseConditions) {
-          url.searchParams.append('hideAiRejectedCloseConditions', 'true');
-        }
-        if (filterSettings.hideUserRejectedMarkets) {
-          url.searchParams.append('hideUserRejectedMarkets', 'true');
-        }
-        if (filterSettings.hideUserRejectedCloseConditions) {
-          url.searchParams.append('hideUserRejectedCloseConditions', 'true');
-        }
-      }
-      
-      const response = await fetch(url.toString());
-      const data = await response.json();
+      // Use proxy service to fetch matches with full orderbooks
+      console.log('📡 Calling fetchMatchesFull...');
+      const data = await fetchMatchesFull();
+      console.log('✅ fetchMatchesFull completed:', data);
       
       if (data.success) {
         setMatches(data.data);
+        
+        // Don't populate context here - do it in useEffect after context is ready
         
         // Cache the data in localStorage
         localStorage.setItem('marketMatches', JSON.stringify(data.data));
         localStorage.setItem('marketMatchesTimestamp', Date.now().toString());
         
-        console.log(`📊 Fetched ${data.data.length} market matches from API`);
+        console.log(`📊 Fetched ${data.data.length} market matches from proxy with full orderbooks`);
         console.log('Market matches cached in localStorage');
       } else {
         setError(data.error || 'Failed to fetch matches');
       }
     } catch (err) {
       setError('Network error occurred');
+      console.error('Error fetching matches from proxy:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  const initializeWebSockets = (marketMatches: MarketMatch[]) => {
-    try {
-      // Extract clobTokenIds from current page markets only
-      const allClobIds: string[] = [];
-      const allKalshiTickers: string[] = [];
-      
-      marketMatches.forEach((match) => {
-        // Check if market B is Polymarket and has clobTokenIds
-        if (match.platform_b_name?.toLowerCase().includes('polymarket') && 
-            match.market_b_platform_data?.clobTokenIds) {
-          
-          let clobTokenIds = match.market_b_platform_data.clobTokenIds;
-          
-          // Handle case where clobTokenIds might be a JSON string
-          if (typeof clobTokenIds === 'string') {
-            try {
-              clobTokenIds = JSON.parse(clobTokenIds);
-            } catch (parseError) {
-              console.error('❌ Failed to parse clobTokenIds JSON:', parseError);
-              return; // Skip this match if parsing fails
-            }
-          }
-          
-          if (Array.isArray(clobTokenIds)) {
-            // Convert to numbers if they're numeric strings, otherwise keep as strings
-            clobTokenIds.forEach((id) => {
-              const clobId = id.toString();
-              
-              if (!allClobIds.includes(clobId)) {
-                allClobIds.push(clobId);
-              }
-            });
-          }
-        }
-
-        // Check if market A is Kalshi and has external_id (ticker)
-        if (match.platform_a_name?.toLowerCase().includes('kalshi') && 
-            match.market_a_external_id) {
-          
-          const ticker = match.market_a_external_id;
-          
-          if (!allKalshiTickers.includes(ticker)) {
-            allKalshiTickers.push(ticker);
-          }
-        }
-      });
-
-      // Initialize Polymarket WebSocket
-      if (allClobIds.length > 0) {
-        console.log(`🔌 Initializing Polymarket WebSocket with ${allClobIds.length} clobIds for top 250 markets`);
-        initPolymarketWebSocket(allClobIds, undefined, false); // verbose = false to reduce logging
-        setWebsocketInitialized(true);
-        console.log('✅ Polymarket WebSocket initialized successfully');
-      } else {
-        console.log('⚠️ No Polymarket clobTokenIds found, skipping WebSocket initialization');
-      }
-
-      // Initialize Kalshi WebSocket
-      if (allKalshiTickers.length > 0) {
-        console.log(`🔌 Initializing Kalshi WebSocket with ${allKalshiTickers.length} tickers for top 250 markets`);
-        initKalshiWebSocket(allKalshiTickers, undefined, false); // verbose = false to reduce logging
-        setKalshiWebsocketInitialized(true);
-        console.log('✅ Kalshi WebSocket initialized successfully');
-      } else {
-        console.log('⚠️ No Kalshi tickers found, skipping WebSocket initialization');
-      }
-    } catch (err) {
-      console.error('❌ Error initializing WebSockets:', err);
-    }
-  };
+  // initializeWebSockets function removed - now using proxy server for all data
 
   // No pagination - removed changePage function
 
@@ -309,20 +474,7 @@ function HomePageContent() {
     }
   };
 
-  // Cleanup WebSockets on unmount
-  useEffect(() => {
-    return () => {
-      // Polymarket WebSocket cleanup
-      if (websocketInitialized) {
-        closePolymarketWebSocket();
-        console.log('🔌 Polymarket WebSocket closed');
-      }
-      if (kalshiWebsocketInitialized) {
-        closeKalshiWebSocket();
-        console.log('🔌 Kalshi WebSocket closed');
-      }
-    };
-  }, [websocketInitialized, kalshiWebsocketInitialized]);
+  // WebSocket cleanup removed - no direct WebSocket connections
 
   // console.log(`📊 Total matches: ${matches.length}, Showing top 250 by volume`);
 

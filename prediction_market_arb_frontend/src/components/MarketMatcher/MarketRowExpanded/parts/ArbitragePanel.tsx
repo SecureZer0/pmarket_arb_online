@@ -340,7 +340,7 @@ function CalcBlock({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Step 1 */}
         <div className="bg-transparent border border-[#EEEDED]/30 rounded p-2 space-y-2">
-          <div className="text-[#737372]"><span className="font-medium text-[#EEEDED]">Step 1:</span> {directionLabel} cost</div>
+          <div className="text-[#737372]"><span className="font-medium text-[#EEEDED]">Step 1:</span> {directionLabel} {'≤'} $1.00 </div>
           <div className="text-[#EEEDED] font-mono ml-2">${priceA.toFixed(3)} + ${priceB.toFixed(3)}</div>
           <div className="text-[#EEEDED] font-mono ml-2">= <span className={accentClass}>${totalCost.toFixed(3)}</span></div>
         </div>

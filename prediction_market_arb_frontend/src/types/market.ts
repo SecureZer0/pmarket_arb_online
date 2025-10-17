@@ -55,6 +55,50 @@ export interface MarketMatch {
   arbitrage_profit_margin?: number | null;
   is_arbitrage_opportunity?: boolean;
   arbitrage_total_profit?: number | null;
+  
+  // Orderbook data from proxy server (marketA and marketB)
+  marketA?: {
+    id: string;
+    title: string;
+    platform: string;
+    orderbook: {
+      bids: Array<[number, number]>;
+      asks: Array<[number, number]>;
+      lastUpdatedMs: number | null;
+    };
+    // Separate YES/NO orderbooks for Kalshi
+    yesOrderbook?: {
+      bids: Array<[number, number]>;
+      asks: Array<[number, number]>;
+      lastUpdatedMs: number | null;
+    };
+    noOrderbook?: {
+      bids: Array<[number, number]>;
+      asks: Array<[number, number]>;
+      lastUpdatedMs: number | null;
+    };
+  };
+  marketB?: {
+    id: string;
+    title: string;
+    platform: string;
+    orderbook: {
+      bids: Array<[number, number]>;
+      asks: Array<[number, number]>;
+      lastUpdatedMs: number | null;
+    };
+    // Separate YES/NO orderbooks for Polymarket
+    yesOrderbook?: {
+      bids: Array<[number, number]>;
+      asks: Array<[number, number]>;
+      lastUpdatedMs: number | null;
+    };
+    noOrderbook?: {
+      bids: Array<[number, number]>;
+      asks: Array<[number, number]>;
+      lastUpdatedMs: number | null;
+    };
+  };
 }
 
 export interface PlatformData {

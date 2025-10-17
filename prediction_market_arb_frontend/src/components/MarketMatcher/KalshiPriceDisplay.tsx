@@ -11,6 +11,17 @@ export default function KalshiPriceDisplay({ ticker }: KalshiPriceDisplayProps) 
   const yesOrderbook = useOrderBookByClobId(yesClobId);
   const noOrderbook = useOrderBookByClobId(noClobId);
 
+  // Debug logging for specific ticker
+  if (ticker === 'KXALIENS-26') {
+    console.log('🔍 KalshiPriceDisplay debug:', {
+      ticker,
+      yesClobId,
+      noClobId,
+      yesOrderbook: yesOrderbook ? { bids: yesOrderbook.bids.size, asks: yesOrderbook.asks.size } : null,
+      noOrderbook: noOrderbook ? { bids: noOrderbook.bids.size, asks: noOrderbook.asks.size } : null
+    });
+  }
+
   const yesBestAsk = yesOrderbook?.asks && yesOrderbook.asks.size > 0
     ? Math.min(...Array.from(yesOrderbook.asks.keys()))
     : null;

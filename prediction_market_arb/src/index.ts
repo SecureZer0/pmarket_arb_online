@@ -26,24 +26,18 @@ export async function processAndMatch(matchAll: boolean = false): Promise<{
 
   let matching;
   if (matchAll) {
-    logger.info('🔗 Running full all-vs-all matching with batch processing...');
+    logger.info('🔗 Running full all-vs-all matching...');
     // Build in-memory inputs: use the prepared market records from processors
     // For matcher, we need Kalshi markets and Polymarket markets arrays
     const kalshiMarkets = [...kalshi.newMarkets, ...kalshi.existingMarkets];
     const polyMarkets = [...polymarket.newMarkets, ...polymarket.existingMarkets];
-    
-    // Use batch processing for large datasets
-    const batchSize = kalshiMarkets.length > 10000 ? 5000 : 1000;
-    matching = await matchAllMarkets(kalshiMarkets as any[], polyMarkets as any[], batchSize);
+    matching = await matchAllMarkets(kalshiMarkets as any[], polyMarkets as any[]);
   } else {
     logger.info('🔗 Running new-market matching (new Polymarket vs all Kalshi, and new Kalshi vs all Polymarket)...');
     const newKalshi = kalshi.newMarkets;
     const allKalshi = [...kalshi.newMarkets, ...kalshi.existingMarkets];
     const newPoly = polymarket.newMarkets;
     const allPoly = [...polymarket.newMarkets, ...polymarket.existingMarkets];
-    
-    // Use batch processing for large datasets
-    const batchSize = allKalshi.length > 10000 ? 5000 : 1000;
     matching = await matchNewMarkets(newKalshi as any[], allKalshi as any[], newPoly as any[], allPoly as any[]);
   }
 

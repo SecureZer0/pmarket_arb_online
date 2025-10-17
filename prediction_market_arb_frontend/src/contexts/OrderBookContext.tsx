@@ -64,11 +64,13 @@ const orderBookReducer = (state: OrderBookState, action: OrderBookAction): Order
       };
       
       // DATA IN CONTEXT AFTER
-      // console.log('DATA IN CONTEXT AFTER', {
-      //   clobId,
-      //   bidsCount: bids.length,
-      //   asksCount: asks.length
-      // });
+      console.log('📊 OrderBookContext SET_ORDER_BOOK:', {
+        clobId,
+        bidsCount: bids.length,
+        asksCount: asks.length,
+        sampleBids: bids.slice(0, 2),
+        sampleAsks: asks.slice(0, 2)
+      });
       
       return nextState;
     }

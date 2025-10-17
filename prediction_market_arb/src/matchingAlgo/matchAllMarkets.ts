@@ -38,11 +38,10 @@ const MATCHING_CONFIG = {
 };
 
 /**
- * Main function to run the matching algorithm with batch processing
- * Processes Kalshi markets in batches to avoid memory issues
+ * Main function to run the matching algorithm on full in-memory arrays
  */
-export async function matchAllMarkets(kalshiMarkets: any[] = [], polymarketMarkets: any[] = [], batchSize: number = 5000): Promise<MatchingResult> {
-  logger.info('🚀 Starting full market matching algorithm with batch processing...');
+export async function matchAllMarkets(kalshiMarkets: any[] = [], polymarketMarkets: any[] = []): Promise<MatchingResult> {
+  logger.info('🚀 Starting full market matching algorithm...');
   
   try {
     if (!Array.isArray(kalshiMarkets) || !Array.isArray(polymarketMarkets)) {
@@ -51,26 +50,10 @@ export async function matchAllMarkets(kalshiMarkets: any[] = [], polymarketMarke
     
     logger.info(`📊 Loaded ${kalshiMarkets.length} Kalshi markets`);
     logger.info(`📊 Loaded ${polymarketMarkets.length} Polymarket markets`);
-    logger.info(`📦 Processing in batches of ${batchSize} Kalshi markets`);
     
-    // Process Kalshi markets in batches
-    const totalBatches = Math.ceil(kalshiMarkets.length / batchSize);
-    let allCandidates: any[] = [];
-    
-    for (let i = 0; i < kalshiMarkets.length; i += batchSize) {
-      const batchNumber = Math.floor(i / batchSize) + 1;
-      const kalshiBatch = kalshiMarkets.slice(i, i + batchSize);
-      
-      logger.info(`🔄 Processing batch ${batchNumber}/${totalBatches} (${kalshiBatch.length} Kalshi markets)`);
-      
-      // Step 1: Run hybrid matching for this batch
-      const batchCandidates = await findMatches(kalshiBatch, polymarketMarkets);
-      allCandidates.push(...batchCandidates);
-      
-      logger.info(`📊 Batch ${batchNumber} found ${batchCandidates.length} candidates (Total so far: ${allCandidates.length})`);
-    }
-    
-    logger.info(`🔍 Found ${allCandidates.length} total candidates across all batches`);
+    // Step 1: Run hybrid matching for the full arrays
+    const allCandidates = await findMatches(kalshiMarkets, polymarketMarkets);
+    logger.info(`🔍 Found ${allCandidates.length} total candidates`);
     
     // Step 2: Score and rank all candidates
     const scoredCandidates = await scoreCandidates(allCandidates);
